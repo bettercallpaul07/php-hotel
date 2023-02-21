@@ -58,25 +58,104 @@ $hotels = [
 
 ];
 
+//imposto una variabile ad un valore di default; se è impostato il filtro allora la riempio con quel valore (sia per il parcheggio che per i voti)
+$parkingFilter = null;
+
+if (isset($_GET["parking"])) {
+    $parkingFilter = $_GET("parking");
+};
+
+$voteFilter = 0;
+
+if (isset($_GET["vote"])) {
+    $voteFilter = $_GET("vote");
+};
+
+//---------------------------------------------------------
+
+$filteredHotels = [];
+
+foreach ($hotels as $hotel) {
+    $addHotel = true;
+
+
+    if (($parkingFilter == "1"
+            &&
+            $hotel["parking"] == false
+        )
+
+        ||
+
+        ($parkingFilter == "0"
+            &&
+            $hotel["parking"] == true
+        )
+
+    ) {
+        $addHotel = false;
+    }
+
+    if ($hotel["vote"] < $voteFilter) {
+        $addHotel = false;
+    }
+
+    if ($addHotel == true) {
+        $filteredHotels = $hotel;
+    }
+}
+
+
 ?>
 
 <body>
     <div class="maintable">
         <h1>Ricerca Hotel</h1>
+
+
+        <form action="" method="get">
+            <label>Parcheggio disponibile</label>
+            <select name="parking">
+                <option value="" selected="selected">Indifferente</option>
+                <option value="1">Presente</option>
+                <option value="0">Assente</option>
+            </select>
+
+            <label>Punteggio recensioni</label>
+            <select name="vote">
+                <option value="" selected>Qualsiasi recensione</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <button type="submit">Avvia ricerca</button>
+        </form>
+
         <?php
+
+
+        var_dump($parkingFilter);
+        var_dump($voteFilter);
+        var_dump($filteredHotels);
+
 
         echo "<table>";
         echo "<tr><th>Nome struttura</th><th>Descrizione</th><th>Parcheggio</th><th>Voto</th><th>Distanza</th></tr>";
-        foreach ($hotels as $hotel) {
+
+        foreach ($filteredHotels as $hotel) {
+
             echo "<tr>";
             echo "<td>" . $hotel["name"] . "</td>";
             echo "<td>" . $hotel["description"] . "</td>";
             echo "<td>";
+
             if ($hotel["parking"] == true) {
                 echo "<span class='button true'>&#x2713;</span>";
             } else {
-                echo "<span class='button false'>&#120;</span>";
-            }
+                echo "<span class='button false'>X</span>";
+            };
+
             echo "</td>";
             echo "<td>";
             for ($i = 1; $i <= $hotel["vote"]; $i++) {
@@ -87,10 +166,12 @@ $hotels = [
             }
             echo "</td>";
             echo "<td>" . $hotel["distance_to_center"] . "</td>";
-        }
+        };
         echo "</tr>";
         echo "</table>";
+
         ?>
+
     </div>
 </body>
 

@@ -19,7 +19,7 @@ body {
 
 .maintable h1 {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
     color: white;
 }
 
@@ -51,15 +51,15 @@ tr:hover td {
 }
 
 .star {
-    font-size: 24px;
+    font-size: 1rem;
     color: yellow;
 }
 
 .button {
-    width: 1.5rem;
-    height: 1.5rem;
-    padding: 0.35rem;
-    line-height: 1.5rem;
+    width: 1rem;
+    height: 1rem;
+    padding: 0.2rem;
+    line-height: 1rem;
     color: white;
     border-radius: 50%;
     background-color: lightgreen;
@@ -68,4 +68,26 @@ tr:hover td {
 
 .false {
     background-color: red;
+}
+
+form {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+input {
+    padding: 8px 12px;
+    border-radius: 5px;
+    border: 1px solid black;
+
+}
+
+button {
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 16px;
+    padding: 8px 12px;
+    background-color: red;
+    border-radius: 5px;
 }
