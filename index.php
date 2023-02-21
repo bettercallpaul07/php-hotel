@@ -62,13 +62,13 @@ $hotels = [
 $parkingFilter = null;
 
 if (isset($_GET["parking"])) {
-    $parkingFilter = $_GET("parking");
+    $parkingFilter = $_GET["parking"];
 };
 
 $voteFilter = 0;
 
 if (isset($_GET["vote"])) {
-    $voteFilter = $_GET("vote");
+    $voteFilter = $_GET["vote"];
 };
 
 //---------------------------------------------------------
@@ -76,21 +76,20 @@ if (isset($_GET["vote"])) {
 $filteredHotels = [];
 
 foreach ($hotels as $hotel) {
+
     $addHotel = true;
 
 
-    if (($parkingFilter == "1"
+    if (
+        ($parkingFilter == "1"
             &&
             $hotel["parking"] == false
         )
-
         ||
-
         ($parkingFilter == "0"
             &&
             $hotel["parking"] == true
         )
-
     ) {
         $addHotel = false;
     }
@@ -104,7 +103,6 @@ foreach ($hotels as $hotel) {
     }
 }
 
-
 ?>
 
 <body>
@@ -115,7 +113,7 @@ foreach ($hotels as $hotel) {
         <form action="" method="get">
             <label>Parcheggio disponibile</label>
             <select name="parking">
-                <option value="" selected="selected">Indifferente</option>
+                <option value="" selected>Indifferente</option>
                 <option value="1">Presente</option>
                 <option value="0">Assente</option>
             </select>
