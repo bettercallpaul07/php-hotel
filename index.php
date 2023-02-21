@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="it">
 
+
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,6 +19,7 @@
 
 
 <?php
+
 
 $hotels = [
 
@@ -99,7 +102,8 @@ foreach ($hotels as $hotel) {
     }
 
     if ($addHotel == true) {
-        $filteredHotels = $hotel;
+        // $filteredHotels[] = $hotel;
+        array_push($filteredHotels, $hotel);
     }
 }
 
@@ -133,9 +137,9 @@ foreach ($hotels as $hotel) {
         <?php
 
 
-        var_dump($parkingFilter);
-        var_dump($voteFilter);
-        var_dump($filteredHotels);
+        // var_dump($parkingFilter);
+        // var_dump($voteFilter);
+        // var_dump($filteredHotels);
 
 
         echo "<table>";
